@@ -19,6 +19,7 @@ inputForm.addEventListener('submit', e => {
 
     nextStep += step.valueAsNumber;
   }
+  e.target.reset();
 });
 
 function createPromise(position, delay) {
