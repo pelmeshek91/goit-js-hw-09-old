@@ -5,10 +5,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 const input = document.querySelector('#datetime-picker');
 const btnStart = document.querySelector('button[data-start]');
 const currentTime = Date.now();
-let dataDays = document.querySelector('span[data-days]');
-let dataHours = document.querySelector('span[data-hours]');
-let dataMinutes = document.querySelector('span[data-minutes]');
-let dataSeconds = document.querySelector('span[data-seconds]');
+let span = document.getElementsByClassName('value');
 
 let timerId = null;
 let startTime = Date.now();
@@ -21,7 +18,6 @@ flatpickr(input, {
   minuteIncrement: 1,
   onClose(selectedDates) {
     startTime = selectedDates[0];
-    console.log(startTime);
   },
 });
 
@@ -49,16 +45,12 @@ const timer = {
       } else {
         const deltaTime = startTime - currentTime;
         const runTime = convertMs(deltaTime);
-        console.log(runTime);
-        dataDays.style.color = 'red';
-        dataHours.style.color = 'red';
-        dataMinutes.style.color = 'red';
-        dataSeconds.style.color = 'red';
-
-        dataDays.innerHTML = runTime.days;
-        dataHours.innerHTML = runTime.hours;
-        dataMinutes.innerHTML = runTime.minutes;
-        dataSeconds.innerHTML = runTime.seconds;
+        for (let i = 0; i < span.length; i += 1) {
+          span[i].style.color = 'red';
+        }
+        for (let key in runTime) {
+          document.querySelector(`[data-${key}]`).innerHTML = runTime[key];
+        }
       }
     }, 1000);
   },

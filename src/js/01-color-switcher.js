@@ -8,12 +8,12 @@ const timer = {
       let color = getRandomHexColor();
       body.style.backgroundColor = color;
     }, 1000);
-    btnStart.setAttribute('disabled', 'disabled');
+    btnStart.setAttribute('disabled', 'true');
     btnStop.removeAttribute('disabled'); //спросить у Руслана почему 2 раза нужно писать
   },
   stop() {
     clearInterval(timerId);
-    btnStop.setAttribute('disabled', 'disabled');
+    btnStop.setAttribute('disabled', 'true');
     btnStart.removeAttribute('disabled');
   },
 };
